@@ -4,6 +4,7 @@ import s from './App.scss';
 import Row from '../Row';
 import Header from '../Header';
 import FormulaEditor from '../FormulaEditor';
+import store from '../../store';
 
 function App() {
     return (
@@ -12,7 +13,7 @@ function App() {
             <table className={s.table}>
                 <tbody>
                     <Header/>
-                    {_.times(10, rowIndex => <Row key={rowIndex} rowIndex={rowIndex}/>)}
+                    {_.times(10, rowIndex => <Row key={rowIndex} rowIndex={rowIndex} />)}
                 </tbody>
             </table>
         </div>

@@ -4,7 +4,7 @@ import s from './Row.scss';
 import _ from 'lodash';
 import Cell from '../Cell';
 
-function Row({rowIndex}) {
+function Row({rowIndex,data}) {
   return (
       <tr className={s.tableRow}>
           <th>{rowIndex + 1}</th>

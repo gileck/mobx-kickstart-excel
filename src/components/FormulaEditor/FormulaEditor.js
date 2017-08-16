@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import s from './FormulaEditor.scss';
+import Store from '../../store';
+import { computed } from 'mobx';
+import { observer } from  'mobx-react';
 
 class InputWithState extends React.Component {
 
@@ -23,11 +26,16 @@ class InputWithState extends React.Component {
     onKeyPress(e) {
         if (e.key === 'Enter') {
             this.props.onChange(this.state.value);
+            this.setState({value: ""});
         }
     }
 
     onChange(e) {
         this.setState({ value: e.target.value });
+    }
+
+    setValue(value) {
+        this.setState({value: value});
     }
 
     render() {
@@ -47,11 +55,14 @@ InputWithState.propTypes = {
     onChange: PropTypes.func.isRequired
 };
 
+
 const FormulaEditor = () => (
     <div className={s.formulaEditor}>
-        Formula: <InputWithState value="" onChange={() => {}} />
+        Formula: <InputWithState
+        value={Store.selectedCellValue}
+        onChange={(val) => Store.setValue(val)}/>
     </div>
 
 );
 
-export default FormulaEditor;
+export default observer(FormulaEditor);
